@@ -12,7 +12,7 @@ const MyNetwork = () => {
         setText("Pending Request");
     }
     const fetchFriendList = async () => {
-        await axios.get('http://localhost:4000/api/auth/friendsList', { withCredentials: true }).then((res) => {
+        await axios.get('https://nexgo-new.onrender.com/api/auth/friendsList', { withCredentials: true }).then((res) => {
             console.log(res)
             setData(res.data.friends)
         }).catch(err => {
@@ -20,7 +20,7 @@ const MyNetwork = () => {
         })
     }
     const fetchPendingRequest = async () => {
-        await axios.get('http://localhost:4000/api/auth/pendingfriendsList', { withCredentials: true }).then((res) => {
+        await axios.get('https://nexgo-new.onrender.com/api/auth/pendingfriendsList', { withCredentials: true }).then((res) => {
             console.log(res)
             setData(res.data.pendingfriends)
         }).catch(err => {

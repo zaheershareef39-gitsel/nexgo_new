@@ -46,9 +46,9 @@ const Profile = () => {
     const fetchDataOnLoad = async () => {
         try {
             const [userDatas, postDatas, ownDatas] = await Promise.all([
-                axios.get(`http://localhost:4000/api/auth/user/${id}`),
-                axios.get(`http://localhost:4000/api/post/getTop5Post/${id}`),
-                axios.get('http://localhost:4000/api/auth/self', { withCredentials: true })
+                axios.get(`https://nexgo-new.onrender.com/api/auth/user/${id}`),
+                axios.get(`https://nexgo-new.onrender.com/api/post/getTop5Post/${id}`),
+                axios.get('https://nexgo-new.onrender.com/api/auth/self', { withCredentials: true })
             ]);
             setUserData(userDatas.data.user);
             setPostData(postDatas.data.posts);
@@ -91,7 +91,7 @@ const Profile = () => {
         setCircularImage(true);
     }
     const handleEditFunc = async (data) => {
-        await axios.put(`http://localhost:4000/api/auth/update`, { user: data }, { withCredentials: true }).then(res => {
+        await axios.put(`https://nexgo-new.onrender.com/api/auth/update`, { user: data }, { withCredentials: true }).then(res => {
             window.location.reload();
         }).catch(err => {
             console.log(err)
@@ -125,7 +125,7 @@ const Profile = () => {
     const handleSendFriendRequest = async () => {
         if (checkFriendStatus() === "Request Sent") return;
         if (checkFriendStatus() === "Connect") {
-            await axios.post('http://localhost:4000/api/auth/sendFriendReq', { reciever: userData?._id }, { withCredentials: true }).then(res => {
+            await axios.post('https://nexgo-new.onrender.com/api/auth/sendFriendReq', { reciever: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message);
                 setTimeout(() => { window.location.reload(); }, 2000);
             }).catch(err => {
@@ -134,7 +134,7 @@ const Profile = () => {
             })
         }
         else if (checkFriendStatus() === "Approve Request") {
-            await axios.post('http://localhost:4000/api/auth/acceptFriendRequest', { friendId: userData?._id }, { withCredentials: true }).then(res => {
+            await axios.post('https://nexgo-new.onrender.com/api/auth/acceptFriendRequest', { friendId: userData?._id }, { withCredentials: true }).then(res => {
                 toast.success(res.data.message);
                 setTimeout(() => { window.location.reload(); }, 2000);
             }).catch(err => {
@@ -142,7 +142,7 @@ const Profile = () => {
                 toast.error(err?.response?.data?.error)
             })
         } else {
-            await axios.delete(`http://localhost:4000/api/auth/removeFromFriendList/${userData?._id}`, { withCredentials: true }).then(res => {
+            await axios.delete(`https://nexgo-new.onrender.com/api/auth/removeFromFriendList/${userData?._id}`, { withCredentials: true }).then(res => {
                 toast.success(res.data.message);
                 setTimeout(() => { window.location.reload(); }, 2000);
             }).catch(err => {
@@ -152,7 +152,7 @@ const Profile = () => {
         }
     }
     const handleLogout = async () => {
-        await axios.post('http://localhost:4000/api/auth/logout', {}, { withCredentials: true }).then(res => {
+        await axios.post('https://nexgo-new.onrender.com/api/auth/logout', {}, { withCredentials: true }).then(res => {
             localStorage.clear();
             window.location.reload();
         }).catch(err => {
@@ -162,7 +162,7 @@ const Profile = () => {
     }
     const copyToClickBoard = async () => {
         try {
-            let string = `http://localhost:5173/profile/${id}`
+            let string = `https://nexgo-new.onrender.com/profile/${id}`
             await navigator.clipboard.writeText(string);
             toast.success("Post Link Copied to Clipboard")
         } catch (err) {

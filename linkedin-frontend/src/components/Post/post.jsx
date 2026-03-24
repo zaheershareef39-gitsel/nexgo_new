@@ -21,7 +21,7 @@ const Post = ({ profile, item, key, personalData }) => {
     const handleSendComment = async (e) => {
         e.preventDefault();
         if (commentText.trim().length === 0) return toast.error("Please Enter Comment");
-        await axios.post(`http://localhost:4000/api/comment`, { postId: item?._id, comment: commentText }, { withCredentials: true }).then((res => {
+        await axios.post(`https://nexgo-new.onrender.com/api/comment`, { postId: item?._id, comment: commentText }, { withCredentials: true }).then((res => {
             setComments([res.data.comment, ...comments]);
         })).catch(err => {
             console.log(err)
@@ -40,7 +40,7 @@ const Post = ({ profile, item, key, personalData }) => {
         })
     }, [])
     const handLikeFunc = async () => {
-        await axios.post('http://localhost:4000/api/post/likeDislike', { postId: item?._id }, { withCredentials: true }).then(res => {
+        await axios.post('https://nexgo-new.onrender.com/api/post/likeDislike', { postId: item?._id }, { withCredentials: true }).then(res => {
             if (liked) {
                 setNoOfLikes((prev) => prev - 1);
                 setLiked(false)
@@ -55,7 +55,7 @@ const Post = ({ profile, item, key, personalData }) => {
     }
     const handleCommentBoxOC = async () => {
         setComment(true)
-        await axios.get(`http://localhost:4000/api/comment/${item?._id}`).then(resp => {
+        await axios.get(`https://nexgo-new.onrender.com/api/comment/${item?._id}`).then(resp => {
             console.log(resp)
             setComments(resp.data.comments)
         }).catch(err => {
@@ -65,7 +65,7 @@ const Post = ({ profile, item, key, personalData }) => {
     }
     const copyToClickBoard = async () => {
         try {
-            let string = `http://localhost:5173/profile/${item?.user?._id}/activities/${item?._id}`
+            let string = `https://nexgo-new.onrender.com/profile/${item?.user?._id}/activities/${item?._id}`
             await navigator.clipboard.writeText(string);
             toast.success("Post Link Copied to Clipboard")
         } catch (err) {

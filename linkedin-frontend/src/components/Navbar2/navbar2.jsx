@@ -33,7 +33,7 @@ const navbar2 = () => {
     }, [debouncedTerm]);
 
     const searchAPICall = async () => {
-        await axios.get(`http://localhost:4000/api/auth/findUser?query=${debouncedTerm}`, { withCredentials: true }).then(res => {
+        await axios.get(`https://nexgo-new.onrender.com/api/auth/findUser?query=${debouncedTerm}`, { withCredentials: true }).then(res => {
             console.log(res)
             setSearchUser(res.data.users)
         }).catch(err => {
@@ -42,7 +42,7 @@ const navbar2 = () => {
         })
     }
     const fetchNotification = async () => {
-        await axios.get('http://localhost:4000/api/notification/activeNotification', { withCredentials: true }).then(res => {
+        await axios.get('https://nexgo-new.onrender.com/api/notification/activeNotification', { withCredentials: true }).then(res => {
             var count = res.data.count;
             setNotificationCount(count)
         }).catch(err => {

@@ -5,7 +5,7 @@ import axios from 'axios'
 const MessageModal = ({ selfData, userData }) => {
     const [message, setMessage] = useState("")
     const handleSendMessage = async () => {
-        await axios.post('http://localhost:4000/api/conversation/add-conversation', { recieverId: userData?._id, message }, { withCredentials: true }).then(res => {
+        await axios.post('https://nexgo-new.onrender.com/api/conversation/add-conversation', { recieverId: userData?._id, message }, { withCredentials: true }).then(res => {
             window.location.reload();
         }).catch(err => {
             console.log(err);

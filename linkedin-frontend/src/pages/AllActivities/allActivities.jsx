@@ -10,7 +10,7 @@ const AllActivities = () => {
     const [post, setPost] = useState([])
     const [ownData, setOwnData] = useState(null)
     const fetchDataOnLoad = async () => {
-        await axios.get(`http://localhost:4000/api/post/getAllPostForUser/${id}`).then(res => {
+        await axios.get(`https://nexgo-new.onrender.com/api/post/getAllPostForUser/${id}`).then(res => {
             console.log(res)
             setPost(res.data.posts)
         }).catch(err => {

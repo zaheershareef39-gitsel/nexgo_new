@@ -38,7 +38,7 @@ const Messages = () => {
     }, [])
 
     const fetchMessages = async () => {
-        await axios.get(`http://localhost:4000/api/message/${activeConvId}`, { withCredentials: true }).then(res => {
+        await axios.get(`https://nexgo-new.onrender.com/api/message/${activeConvId}`, { withCredentials: true }).then(res => {
 
             setMessages(res.data.message)
         }).catch(err => {
@@ -60,7 +60,7 @@ const Messages = () => {
     }, [messages])
 
     const fetchConverstationOnLoad = async () => {
-        await axios.get('http://localhost:4000/api/conversation/get-conversation', { withCredentials: true }).then(res => {
+        await axios.get('https://nexgo-new.onrender.com/api/conversation/get-conversation', { withCredentials: true }).then(res => {
             setConversations(res.data.conversations)
             setActiveConvId(res.data?.conversations[0]?._id)
             socket.emit("joinConverssation", res.data?.conversations[0]?._id)
@@ -90,7 +90,7 @@ const Messages = () => {
         }
     }
     const handleSendMessage = async () => {
-        await axios.post(`http://localhost:4000/api/message`, { conversation: activeConvId, message: messageText, picture: imageLink }, { withCredentials: true }).then(res => {
+        await axios.post(`https://nexgo-new.onrender.com/api/message`, { conversation: activeConvId, message: messageText, picture: imageLink }, { withCredentials: true }).then(res => {
             socket.emit("sendMessage", activeConvId, res.data)
             setMessageText("")
         }).catch(err => {
